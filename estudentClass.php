@@ -67,7 +67,6 @@ class Estudent {
 		  
 		  $query = $this->pdo->prepare($sql);
 		  $query->execute(array($IDkorisnik));
-		  $query = query($sql,array($IDkorisnik));
 		  
 		  if ($query->rowCount()>0) return true;
 		  else {$this->lastError = "Došlo je do pogreške prilikom brisanja korisnika, Error: ".$query->errorInfo(); 
@@ -89,7 +88,6 @@ class Estudent {
 		  
 		  $query = $this->pdo->prepare($sql);
 		  $query->execute(array($IDtim));
-		  $query = query($sql,array($IDtim));
 		  
 		  if ($query->rowCount()>0) return true;
 		  else {$this->lastError = "Došlo je do pogreške prilikom brisanja tima, Error: ".$query->errorInfo(); 
@@ -120,7 +118,6 @@ class Estudent {
 		  
 		  $query = $this->pdo->prepare($sql);
 		  $query->execute(array($IDdogadaj));
-		  $query = query($sql,array($IDdogadaj));
 		  
 		  if ($query->rowCount()>0) return true;
 		  else {$this->lastError = "Došlo je do pogreške prilikom brisanja događaja, Error: ".$query->errorInfo(); 
@@ -139,7 +136,6 @@ class Estudent {
 		  
 		  $query = $this->pdo->prepare($sql);
 		  $query->execute(array($IDtermin));
-		  $query = query($sql,array($IDtermin));
 		  
 		  if ($query->rowCount()>0) return true;
 		  else {$this->lastError = "Došlo je do pogreške prilikom brisanja termina, Error: ".$query->errorInfo(); 
@@ -171,7 +167,6 @@ class Estudent {
 		  
 		  $query = $this->pdo->prepare($sql);
 		  $query->execute(array($IDkrugOcjena));
-		  $query = query($sql,array($IDkrugOcjena));
 		  
 		  if ($query->rowCount()>0) return true;
 		  else {$this->lastError = "Došlo je do pogreške prilikom brisanja kruga ocjena, Error: ".$query->errorInfo(); 
@@ -194,7 +189,6 @@ class Estudent {
 		  
 		  $query = $this->pdo->prepare($sql);
 		  $query->execute(array($IDfunkcija));
-		  $query = query($sql,array($IDfunkcija));
 		  
 		  if ($query->rowCount()>0) return true;
 		  else {$this->lastError = "Došlo je do pogreške prilikom brisanja funkcije korisnika, Error: ".$query->errorInfo(); 
