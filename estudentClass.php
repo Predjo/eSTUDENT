@@ -78,7 +78,17 @@ class Estudent {
 		  
 		  }//function
   
-	  public function dodajTim(){
+	  public function dodajTim($naziv,$kratica,$idOgranak,$aktivan,$osnovan,$stabni,$opis = NULL){
+
+		  $sql='INSERT INTO tim (naziv,kratica,idOgranak,aktivan,osnovan,stabni,opis) VALUES (?,?,?,?,?,?,?)';
+		  
+		  $query = $this->pdo->prepare($sql);
+		  $query->execute(array($naziv,$kratica,$idOgranak,$aktivan,$osnovan,$stabni,$opis));
+		  
+		  if ($query->rowCount()>0) return true;
+		  else {$this->lastError = "Došlo je do pogreške prilikom dodavanja funkcije korisnika, Error: ".$query->errorInfo(); 
+			  return false;
+			  }//else	
 		  
 		  }//function	
 
@@ -100,16 +110,46 @@ class Estudent {
 		  
 		  }//function
 	  
-	  public function dodajKorisnikaUTim($IDkorisnik,$IDtim){
+	  public function dodajKorisnikaUTim($IDkorisnik,$IDtim,$IDfunkcija){
 		  
+		  $sql='INSERT INTO korisnik_tim (idKorisnik,idTim,idFunkcija) VALUES (?,?,?)';
+		  
+		  $query = $this->pdo->prepare($sql);
+		  $query->execute(array($IDkorisnik,$IDtim,$IDfunkcija));
+		  
+		  if ($query->rowCount()>0) return true;
+		  else {$this->lastError = "Došlo je do pogreške prilikom dodavanja korisnika u tim, Error: ".$query->errorInfo(); 
+			  return false;
+			  }//else
+
 		  }//function
 	  
-	  public function makniKorisnikaIzTima(){
+	  public function makniKorisnikaIzTima($IDkorisnik,$IDtim){
+
+		  $sql='DELETE FROM korisnik_tim WHERE idKorisnik = ? AND idTim = ?';
 		  
+		  $query = $this->pdo->prepare($sql);
+		  $query->execute(array($IDkorisnik,$IDtim));
+		  
+		  if ($query->rowCount()>0) return true;
+		  else {$this->lastError = "Došlo je do pogreške prilikom brisanja korisnika iz tima, Error: ".$query->errorInfo(); 
+			  return false;
+			  }//else
+			  			  					  
 		  }//function
   
 	  public function dodajDogadaj(){
+
+	
+		  $sql='INSERT INTO dogadaj (idKorisnik,idTim,idFunkcija) VALUES (?,?,?)';
 		  
+		  $query = $this->pdo->prepare($sql);
+		  $query->execute(array($IDkorisnik,$IDtim,$IDfunkcija));
+		  
+		  if ($query->rowCount()>0) return true;
+		  else {$this->lastError = "Došlo je do pogreške prilikom dodavanja korisnika u tim, Error: ".$query->errorInfo(); 
+			  return false;
+			  }//else		  
 		  }//function	
 
 	  public function izbrisiDogadaj($IDdogadaj){
@@ -126,8 +166,17 @@ class Estudent {
 		  
 		  }//function	
 
-	  public function dodajTerminZaPristupni(){
+	  public function dodajTerminZaPristupni($IDogranak,$datum,$vrijeme,$prostorija,$brojPristupnika,$brojPricuvih){
 		  
+		  $sql='INSERT INTO terminzapristupni (idOgranak,datum,vrijeme,prostorija,brojPristupnika,brojPricuvih) VALUES (?,?,?,?,?,?)';
+		  
+		  $query = $this->pdo->prepare($sql);
+		  $query->execute(array($IDogranak,$datum,$vrijeme,$prostorija,$brojPristupnika,$brojPricuvih));
+		  
+		  if ($query->rowCount()>0) return true;
+		  else {$this->lastError = "Došlo je do pogreške prilikom dodavanja termina, Error: ".$query->errorInfo(); 
+			  return false;
+			  }//else		  
 		  }//function	
 
 	  public function izbrisiTerminZaPristupni($IDtermin){
@@ -157,8 +206,18 @@ class Estudent {
 		  
 		  }//function	
 
-	  public function dodajKrugOcjena(){
+	  public function dodajKrugOcjena($naziv,$datumPocetak,$datumKraj){
+			  
+		  $sql='INSERT INTO krugocjena (naziv,datumPocetak,datumKraj) VALUES (?,?,?)';
 		  
+		  $query = $this->pdo->prepare($sql);
+		  $query->execute(array($naziv,$datumPocetak,$datumKraj));
+		  
+		  if ($query->rowCount()>0) return true;
+		  else {$this->lastError = "Došlo je do pogreške prilikom dodavanja kruga ocjena, Error: ".$query->errorInfo(); 
+			  return false;
+			  }//else			  						
+		  		  
 		  }//function	
 
 	  public function izbrisiKrugOcjena($IDkrugOcjena){
@@ -179,8 +238,17 @@ class Estudent {
 		  
 		  }//function	
 
-	  public function dodajFunkcijuKorisnika(){
+	  public function dodajFunkcijuKorisnika($nazivM,$nazivZ,$flag = 0){
 		  
+		  $sql='INSERT INTO funkcijakorisnika (nazivM,nazivZ,flag) VALUES (?,?,?)';
+		  
+		  $query = $this->pdo->prepare($sql);
+		  $query->execute(array($nazivM,$nazivZ,$flag));
+		  
+		  if ($query->rowCount()>0) return true;
+		  else {$this->lastError = "Došlo je do pogreške prilikom dodavanja funkcije korisnika, Error: ".$query->errorInfo(); 
+			  return false;
+			  }//else			  
 		  }//function	
 
 	  public function izbrisiFunkcijuKorisnika($IDfunkcija){
