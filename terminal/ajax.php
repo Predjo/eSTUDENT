@@ -51,18 +51,28 @@ else if (in_array($command,$specialCommands)){
 			break;
 		
 		
-		}	
-	}
+		}//switch	
+	}//elseif
 else {
-	
-	$atributes = explode(',',$input[1]);
-	
 	$reflectionMethod = new ReflectionMethod('Estudent', $command);
-	$result = $reflectionMethod->invokeArgs(new Estudent, $atributes);	
-	if ($result) {echo "Naredba je uspješno izvedena! <br>";}
+	if (isset($input[1])){
+		$arguments = explode(',',$input[1]);
+		$result = $reflectionMethod->invokeArgs(new Estudent, $arguments);	
+	}//if
+	
+	else {
+		$result = $reflectionMethod->invoke(new Estudent);			
+	}//else
+	
+	if ($result) {echo "Naredba je uspješno izvedena! <br>";
+		if ($result!=1){
+			createTable($result);
+			echo "<br>";
+			}//if
+		}//if
 	else echo "Dogodila se greška prilikom izvođenja naredbe! <br>";
 	
-	}//if
+	}//else
 
 
 

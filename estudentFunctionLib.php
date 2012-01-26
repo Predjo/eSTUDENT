@@ -1,6 +1,30 @@
 <?php
 
 
+function createTable($sqlArray){ //radi tablicu od 2D niza
+	if (isset($sqlArray[0])){
+		$x=count($sqlArray[0]);
+	
+		$keys=array_keys($sqlArray[0]);
+		echo "<table cellpadding='5px' style='border-collapse:collapse;border:solid;border-width:1px;border-color:#ddd;' ><tr>";
+		for ($i=0;$i<count($keys);$i++){
+			echo "<th style='border:solid;border-width:1px;border-color:#ddd;'>".$keys[$i]."</th>";	
+		}//for
+		echo "</tr>";
+	
+		for ($i=0;$i<count($sqlArray);$i++){
+			echo "<tr>";
+			for ($x=0;$x<count($sqlArray[0]);$x++){
+			echo "<td style='border:solid;border-width:1px;border-color:#ddd;'>".$sqlArray[$i][$keys[$x]]."</td>";	
+			}//for
+			echo "</tr>";
+		}//for
+	
+		echo "</table>";
+		}//if
+	else return false;
+
+}//function
 
 //PHPBB funkcije za generiranje i provjeru lozinka ****************************************************************************
 

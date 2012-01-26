@@ -17,7 +17,7 @@
 </div>
 </div>
 <div id="terminal-head">
-<input type="text" name="terminal-input" id="terminal-input" class="terminal-input" />
+>><input type="text" name="terminal-input" id="terminal-input" class="terminal-input" />
 </div>
 </div>
 </body>

@@ -15,7 +15,7 @@ class Estudent {
 		try {
 			$this->pdo = new PDO('mysql:dbname='.$this->dbname, $this->username, $this->password);
 			$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE);
+			$this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,  PDO::FETCH_NAMED);
 			$this->pdo->exec('SET NAMES utf8');
 		}//try 
 		catch (PDOException $e) {
@@ -78,12 +78,12 @@ class Estudent {
 		  
 		  }//function
   
-	  public function dodajTim($naziv,$kratica,$idOgranak,$aktivan,$osnovan,$stabni,$opis = NULL){
+	  public function dodajTim($naziv,$kratica,$IDOgranak,$aktivan,$osnovan,$stabni,$opis = NULL){
 
 		  $sql='INSERT INTO tim (naziv,kratica,idOgranak,aktivan,osnovan,stabni,opis) VALUES (?,?,?,?,?,?,?)';
 		  
 		  $query = $this->pdo->prepare($sql);
-		  $query->execute(array($naziv,$kratica,$idOgranak,$aktivan,$osnovan,$stabni,$opis));
+		  $query->execute(array($naziv,$kratica,$IDOgranak,$aktivan,$osnovan,$stabni,$opis));
 		  
 		  if ($query->rowCount()>0) return true;
 		  else {$this->lastError = "Došlo je do pogreške prilikom dodavanja funkcije korisnika, Error: ".$query->errorInfo(); 
@@ -109,6 +109,30 @@ class Estudent {
 	  public function urediTim(){
 		  
 		  }//function
+		  
+	  public function dohvatiTimove($IDOgranak = NULL){
+
+		  if (!is_null($IDOgranak)){
+				  if ($this->postoji('ogranak',$IDOgranak)){
+					  $sql='SELECT * FROM tim WHERE idOgranak = ?';
+					  $query = $this->pdo->prepare($sql);
+					  $query->execute(array($IDOgranak));
+				  }//if
+				  else {
+					  $this->lastError = "Ne postoji ogranak sa tim ID-em!";
+					  return false;
+				  }//else
+			  }//if
+		  else{
+			  $sql='SELECT * FROM tim';
+			  $query = $this->pdo->prepare($sql);
+		  	  $query->execute(array());	
+			  }//else
+		  		  
+		 $result = $query->fetchAll();
+		 if ($result) return $result;
+		 else return false; 
+		  }//function	  
 	  
 	  public function dodajKorisnikaUTim($IDkorisnik,$IDtim,$IDfunkcija){
 		  
@@ -166,12 +190,12 @@ class Estudent {
 		  
 		  }//function	
 
-	  public function dodajTerminZaPristupni($IDogranak,$datum,$vrijeme,$prostorija,$brojPristupnika,$brojPricuvih){
+	  public function dodajTerminZaPristupni($IDOgranak,$datum,$vrijeme,$prostorija,$brojPristupnika,$brojPricuvih){
 		  
 		  $sql='INSERT INTO terminzapristupni (idOgranak,datum,vrijeme,prostorija,brojPristupnika,brojPricuvih) VALUES (?,?,?,?,?,?)';
 		  
 		  $query = $this->pdo->prepare($sql);
-		  $query->execute(array($IDogranak,$datum,$vrijeme,$prostorija,$brojPristupnika,$brojPricuvih));
+		  $query->execute(array($IDOgranak,$datum,$vrijeme,$prostorija,$brojPristupnika,$brojPricuvih));
 		  
 		  if ($query->rowCount()>0) return true;
 		  else {$this->lastError = "Došlo je do pogreške prilikom dodavanja termina, Error: ".$query->errorInfo(); 
@@ -266,6 +290,16 @@ class Estudent {
 		}//function	
 
 
+	 private function postoji($table,$ID){ //provjerava dal postoji odredjeni zapis u određenoj tablici
+		
+		$sql='SELECT * FROM '.$table.' WHERE id = ?';
+		$query = $this->pdo->prepare($sql);
+		$query->execute(array($ID));
+		
+		$result = $query->fetch();
+		if($result) return true;
+		else return false;
+	}
 
 
 }//class
