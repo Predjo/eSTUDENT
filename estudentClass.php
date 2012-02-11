@@ -189,6 +189,10 @@ class Estudent {
 			  }//else			  						
 		  
 		  }//function	
+		  
+	  public function dohvatiDogadaje(){
+
+		  }//function	
 
 	  public function dodajTerminZaPristupni($IDOgranak,$datum,$vrijeme,$prostorija,$brojPristupnika,$brojPricuvih){
 		  
@@ -287,8 +291,73 @@ class Estudent {
 			  return false;
 			  }//else			  			
 		  
-		}//function	
+		}//function
+		
+	  public function dodajOgranak($naziv,$kratica){
 
+		  $sql='INSERT INTO ogranak (naziv,kratica) VALUES (?,?)';
+		  
+		  $query = $this->pdo->prepare($sql);
+		  $query->execute(array($naziv,$kratica));
+		  
+		  if ($query->rowCount()>0) return true;
+		  else {$this->lastError = "Došlo je do pogreške prilikom dodavanja funkcije ogranka, Error: ".$query->errorInfo(); 
+			  return false;
+			  }//else	
+			  	  	
+		}//function
+
+	  public function urediOgranak($IDOgranak,$stupci,$vrijednosti){
+		  if($this->postoji('ogranak',$IDOgranak)){
+			 
+			 $sql = napraviUpdateSql('ogranak',$stupci);
+			 
+			 if(!is_array($vrijednosti)){
+			 	$vrijednosti = explode(',',$vrijednosti);
+				}//if
+			
+			array_push($vrijednosti,$IDOgranak);
+			 
+			 $query = $this->pdo->prepare($sql);
+		 	 $query->execute($vrijednosti);
+			 
+			 if ($query->rowCount()>0) return true;
+			 else {$this->lastError = "Došlo je do pogreške prilikom uređivanja ogranka, Error: ".$query->errorInfo(); 
+				  return false;}
+ 
+			  }//else
+		  else {
+			  $this->lastError = "Ne postoji taj ogranak";
+			  return false;
+			  }//else
+	  	
+		}//function
+
+	  public function izbrisiOgranak($IDOgranak){
+
+		  $sql='DELETE FROM ogranak WHERE id=?';
+		  
+		  $query = $this->pdo->prepare($sql);
+		  $query->execute(array($IDOgranak));
+		  
+		  if ($query->rowCount()>0) return true;
+		  else {$this->lastError = "Došlo je do pogreške prilikom brisanja ogranka, Error: ".$query->errorInfo(); 
+			  return false;
+			  }//else	
+			  	  	
+		}//function
+		
+	  public function dohvatiOgranke(){
+
+		 $sql='SELECT * FROM ogranak';
+		 $query = $this->pdo->prepare($sql);
+		 $query->execute(array());	
+					
+		 $result = $query->fetchAll();
+		 if ($result) return $result;
+		 else return false; 	  	
+		
+		}//function
 
 	 private function postoji($table,$ID){ //provjerava dal postoji odredjeni zapis u određenoj tablici
 		
@@ -304,5 +373,12 @@ class Estudent {
 
 }//class
 
+class functionReturn {
+	public $function;
+	public $success = false;
+	public $error = false;
+	public $message = false;
+	public $data = false;
+}//class
 
 ?>

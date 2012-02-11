@@ -9,6 +9,10 @@ $("#terminal-input").width($("#terminal-head").width()-20);
 
 $("#terminal-body-output").append(startMsg);
 
+$(".terminal").resizable({ alsoResize: '#terminal-body',ghost: true, handles: 's' });
+
+$("#terminal-input").focus();
+
 
 $("#terminal-input").keypress(function(event){
   if ( event.keyCode == 13 ) {
@@ -24,7 +28,7 @@ $("#terminal-input").keypress(function(event){
    }//if
   
   else if(event.keyCode == 38 || event.keyCode == 40) {	
-  	if (inputSaved) {
+  	if (inputSaved && !event.shiftKey) {
 		direction = event.keyCode - 39;
 		if (inputSavedPos+direction>-1 && inputSavedPos+direction<inputSaved.length){
 			inputSavedPos = inputSavedPos + direction;
@@ -52,8 +56,9 @@ function runTerminal(input){
 
 function saveInput(input){
 	if (input && inputSaved[inputSaved.length-1]!=input){
-	inputSavedPos = inputSaved.push(input);
+	inputSaved.push(input);
 	}
+	inputSavedPos =  inputSaved.length;
 }//function
 
 function runCommand(command){
@@ -65,6 +70,7 @@ function runCommand(command){
 
 		case 'exit':
 			$("#terminal-wrap").hide('fast');
+			window.close();
 			break;
 					
 		}//switch

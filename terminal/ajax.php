@@ -1,5 +1,5 @@
 <?php 
-include "../estudentClass.php";
+require_once "../estudentClass.php";
 $input=$_POST['input'];
 $input = explode(' ',$input,2);
 $class_methods = get_class_methods('Estudent');
@@ -45,7 +45,7 @@ else if (in_array($command,$specialCommands)){
 			break;
 		
 		case "help":
-			echo 'Naredbe se unose u obliku: "Naredba Argument1,Argument2,Argument3". <br>
+			echo 'Naredbe se unose u obliku: "Naredba Argument1;Argument2;Argument3". <br>
 					Za popis svih naredbi koristite naredbu "list".<br>
 					Za opis pojedine naredbe koristite "man Naredba".<br>';
 			break;
@@ -56,7 +56,7 @@ else if (in_array($command,$specialCommands)){
 else {
 	$reflectionMethod = new ReflectionMethod('Estudent', $command);
 	if (isset($input[1])){
-		$arguments = explode(',',$input[1]);
+		$arguments = explode(';',$input[1]);
 		$result = $reflectionMethod->invokeArgs(new Estudent, $arguments);	
 	}//if
 	
@@ -67,10 +67,10 @@ else {
 	if ($result) {echo "Naredba je uspješno izvedena! <br>";
 		if ($result!=1){
 			createTable($result);
-			echo "<br>";
+			echo "<br><br>";
 			}//if
 		}//if
-	else echo "Dogodila se greška prilikom izvođenja naredbe! <br>";
+	else echo '<div class="redback">Dogodila se greška prilikom izvođenja naredbe! </div>';
 	
 	}//else
 

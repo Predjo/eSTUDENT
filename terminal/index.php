@@ -4,7 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Terminal</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery-ui-1.8.17.custom.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="js/jquery-ui-1.8.17.custom.min.js" type="text/javascript"></script>
+<script src="js/plugin.scrollbar-min.js" type="text/javascript"></script>
 <script src="js/script.js" type="text/javascript"></script>
 </head>
 

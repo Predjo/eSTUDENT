@@ -6,16 +6,16 @@ function createTable($sqlArray){ //radi tablicu od 2D niza
 		$x=count($sqlArray[0]);
 	
 		$keys=array_keys($sqlArray[0]);
-		echo "<table cellpadding='5px' style='border-collapse:collapse;border:solid;border-width:1px;border-color:#ddd;' ><tr>";
+		echo "<table cellpadding='5px' style='border-collapse:collapse;border:dashed;border-width:1px;border-color:#ddd;' ><tr>";
 		for ($i=0;$i<count($keys);$i++){
-			echo "<th style='border:solid;border-width:1px;border-color:#ddd;'>".$keys[$i]."</th>";	
+			echo "<th style='border:dashed;border-width:1px;border-color:#ddd;'>".$keys[$i]."</th>";	
 		}//for
 		echo "</tr>";
 	
 		for ($i=0;$i<count($sqlArray);$i++){
 			echo "<tr>";
 			for ($x=0;$x<count($sqlArray[0]);$x++){
-			echo "<td style='border:solid;border-width:1px;border-color:#ddd;'>".$sqlArray[$i][$keys[$x]]."</td>";	
+			echo "<td style='border:dashed;border-width:1px;border-color:#ddd;'>".$sqlArray[$i][$keys[$x]]."</td>";	
 			}//for
 			echo "</tr>";
 		}//for
@@ -25,6 +25,23 @@ function createTable($sqlArray){ //radi tablicu od 2D niza
 	else return false;
 
 }//function
+
+function napraviUpdateSql($tablica,$stupci){
+	if (!is_array($stupci)){
+		
+		$stupci=explode(',',$stupci);
+		
+		}//if	
+	
+		 $sql='UPDATE '.$tablica.' SET ';
+		 	foreach($stupci as $stupac){
+				$sql=$sql.' '.$stupac.' = ?,';
+				}
+		$sql = substr($sql, 0, -1);
+		$sql = $sql.' WHERE id = ? ';
+		return $sql;
+			
+	}
 
 //PHPBB funkcije za generiranje i provjeru lozinka ****************************************************************************
 

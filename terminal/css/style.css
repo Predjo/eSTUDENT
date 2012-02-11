@@ -23,6 +23,11 @@
 	padding-left:3px;
 }
 
+#terminal-wrap #terminal-head #terminal-input:focus {
+	
+	border:none;
+	outline:none;}
+
 #terminal-wrap #terminal-body{
 	height:225px;
 	overflow: auto;
