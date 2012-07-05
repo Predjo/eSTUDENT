@@ -1,0 +1,27 @@
+.button, #main-content table tfoot td .bulk-actions select, .pagination a.number, form input.text-input, form textarea, form .wysiwyg, form select, .dp-popup {
+    border-radius: 4px 4px 4px 4px;
+}
+.content-box, .content-box-header, ul.content-box-tabs li a.current, .shortcut-button, .notification {
+    border-radius: 6px 6px 6px 6px;
+}
+.content-box-header {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.closed-box .content-box-header {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+ul.content-box-tabs li a.current {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.shortcut-button span {
+    border-radius: 7px 7px 7px 7px;
+}
+div.wysiwyg ul.panel li a {
+    opacity: 0.6;
+}
+div.wysiwyg ul.panel li a:hover, div.wysiwyg ul.panel li a.active {
+    opacity: 0.99;
+}

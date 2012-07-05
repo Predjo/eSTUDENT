@@ -1,0 +1,111 @@
+@charset "utf-8";
+#terminal-wrap #terminal-head {
+	height:25px;
+	font-size: 12px;
+	
+}
+
+#terminal-wrap #terminal-head #terminal-input {
+	height:25px;
+	color:#5fba3d;
+	border:none;
+	font-family:monospace, prestige;
+	/* Fallback for web browsers that don't support RGBa */
+	background-color: rgb(0, 0, 0);
+	/* RGBa with 0.6 opacity */
+	background-color: rgba(0, 0, 0, 0);
+	/* For IE 5.5 - 7*/
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+	/* For IE 8*/
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+	font-weight: 900;
+	font-size: 12px;
+	padding-left:3px;
+}
+
+#terminal-wrap #terminal-head #terminal-input:focus {
+	
+	border:none;
+	outline:none;}
+
+#terminal-wrap #terminal-body{
+	height:225px;
+	overflow: auto;
+	font-size: 12px;
+	font-weight: 900;
+	}
+.terminal{
+	border-style:solid inset;
+	border-width:6px;
+	border-color:#ccd9d8;
+	background-color:#080808;
+	color:#5fba3d;
+	font-family:monospace, prestige;
+	padding: 10px;
+}
+
+a{
+    color:#5fba3d;
+    text-decoration:underline;
+}
+
+.journaltop{
+    background-color:#080808;
+    color:#5fba3d;
+}
+
+h2{
+    color:#5fba3d;
+    font-family:monospace, prestige;
+}
+
+img{
+    width:0px;
+    height:0px;
+}
+
+li{
+    background-color:#080808;
+}
+
+.a{
+    background-color:#080808;
+}
+
+.redback{
+    background-color:#d5381a;
+    color:#080808;
+}
+
+.blueback{
+    background-color:#0034dc;
+    color:#5fba3d;
+}
+
+.greenback{
+    background-color:#5fba3d;
+    color:#080808;
+}
+
+.yellowback{
+    background-color:#e5df43;
+    color:#d5381a;
+}
+
+.greyback{
+    background-color:#888888;
+    color:#ffffff;
+}
+
+.border{
+    width:auto;
+    height:auto;
+    border-style:solid;
+    border-width:3px;
+    border-color:#888888;
+}
+
+.image{
+    width:auto;
+    height:auto;
+}

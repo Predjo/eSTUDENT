@@ -1,0 +1,104 @@
+@charset "utf-8";
+body {
+	margin:50px 0px; padding:0px;
+	text-align:center;
+	}
+	
+#content {
+	width:500px;
+	margin:0px auto;
+	text-align:left;
+	padding:15px;
+}
+
+.btn-core, .btn-core:hover {
+  background-color: #c5322e;
+  background-image: -moz-linear-gradient(top, #c5322e, #7b0d0d);
+  background-image: -ms-linear-gradient(top, #c5322e, #7b0d0d);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c5322e), to(#7b0d0d));
+  background-image: -webkit-linear-gradient(top, #c5322e, #7b0d0d);
+  background-image: -o-linear-gradient(top, #c5322e, #7b0d0d);
+  background-image: linear-gradient(top, #c5322e, #7b0d0d);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7b0d0d', endColorstr='#c5322e', GradientType=0);
+  border-color: #7b0d0d #7b0d0d #003580;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+}
+
+
+
+.formInput{
+	 
+	width:300px;
+	height:25px;
+}
+
+.formSelect{
+	 
+	width:300px;
+	height:30px;
+}
+
+.formText{
+	
+	width:300px;
+	height:150;
+}
+
+.formSubmit{
+
+	width:150px;
+	height:50px;	
+}
+
+.formTextarea{
+	width:500px;
+	margin-bottom:10px;
+	}
+
+.formTextareaBox{
+	width:300px;
+	margin-bottom:10px;
+	}	
+
+#login{
+	overflow:auto;
+	display:none;
+	
+	}
+
+#loginLeft{
+	padding:30px;
+	float:left;
+
+}
+#loginLeft h2{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	color: #333;
+}
+#loginRight{
+	padding:30px;
+	float:left;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#EEEEEE;
+	position:relative;	
+	}
+	
+#signin{
+	
+	position:absolute;
+	top:210px;
+	left:160px;}	
+#logo{
+	background-image:url(../../../resource/images/e.png);
+	width:150px;
+	height:150px;
+	}
+#logo:hover{
+	
+	background-image:url(../../../resource/images/e2.png)}				
